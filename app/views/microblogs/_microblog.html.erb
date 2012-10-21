@@ -1,0 +1,18 @@
+<div style="clear:both;margin-top: 2em;">
+  <div class="icon-gravatar">
+    <%= avatar(microblog.user, :size => 50) %>
+  </div>
+  <div style="float:left;width: 640px;">
+    <h3> <%= link_to_user microblog.user %> (<%= "@"+microblog.user.login%>) </h3>
+    <p><%= textilizable(microblog, :body) %></p>
+    <p>
+      <%= link_to l(:microblog_delete), microblog, :confirm => l(:microblog_delete_confirm), :method => :delete if microblog.user.id == User.current.id || User.current.admin? %>
+    </p>
+    <p>
+      <%= link_to l(:label_updated_time, time_tag(microblog.created_at)), microblog %>
+      <% if microblog.project %>
+        via <%= link_to microblog.project, {:action => :index_project, :project_id => microblog.project.identifier} %>
+      <% end %>
+    </p>
+  </div>
+</div>

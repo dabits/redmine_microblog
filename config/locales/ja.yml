@@ -1,0 +1,9 @@
+# English strings go here for Rails i18n
+ja:
+  microblog: "マイクロブログ"
+  microblog_project: "プロジェクト マイクロブログ"
+  microblog_submit: "投稿"
+  microblog_more: "もっと見る..."
+  microblog_created: "投稿しました！"
+  microblog_delete: "削除"
+  microblog_delete_confirm: "本当に削除しますか?"

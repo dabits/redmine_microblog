@@ -1,0 +1,30 @@
+<div style="width: 800px;">
+<% form_for(@microblog) do |f| %>
+  <% if @microblog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@microblog.errors.count, "error") %> prohibited this microblog from being saved:</h2>
+
+      <ul>
+      <% @microblog.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :body,{:style => "width: 800px; height: 100px;" } %>
+  </div>
+  <% if @project %>
+    <%= f.hidden_field :project_id, {:value => @project.id} %>
+  <% elsif @projects %>
+  <div class="field">
+  	<%= f.label :project_id%>：
+    <%= f.collection_select :project_id, @projects, :id, :name, {:include_blank => true}  %>
+  </div>
+  <% end %>
+  <div class="actions" style="text-align:right;">
+    <%= f.submit l(:microblog_submit) %>
+  </div>
+<% end %>
+</div>

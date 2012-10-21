@@ -1,3 +1,9 @@
 # English strings go here for Rails i18n
 en:
-  my_label: "My label"
+  microblog: "Microblog"
+  microblog_project: "Project Microblog"
+  microblog_submit: "submit"
+  microblog_more: "more..."
+  microblog_created: "Microblog was successfully created."
+  microblog_delete: "Delete"
+  microblog_delete_confirm: "Are you want to delete ?"

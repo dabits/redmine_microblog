@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag 'application', :plugin => 'redmine_microblog' %>
+<h1><%= l(:microblog)%></h1>
+
+<script>
+  var recent_id = <%= @microblogs.last.id %>
+  var update_url = '<%= url_for({:action => :more_recent})%>';
+  
+  updater = new Ajax.PeriodicalUpdater('now_entries', update_url, {
+  	method: 'get',
+  	parameters : 'id=' + recent_id,
+  	frequency: 60,
+  	onSuccess: function(request){
+      var hash = updater.options.parameters.parseQuery(); 
+      hash["ajax_request_id"] = Math.random(); 
+      hash = $H(hash); 
+      updater.options.parameters = hash.toQueryString(); 
+  	}
+  });
+</script>
+
+<%= render 'form' %>
+<div id="now_entries">
+  <% @microblogs.each do |microblog| %>
+  <%= render microblog %>
+  <% end %>
+</div>
+<div id="more_entries">
+    <%= link_to_remote(l(:microblog_more), {:update => 'more_entries', :url => {:action => :more_history, :id => @microblogs.last.id}}, {:class => 'link_more'})%>
+</div>
