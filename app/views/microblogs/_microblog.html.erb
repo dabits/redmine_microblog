@@ -9,7 +9,7 @@
       <%= link_to l(:microblog_delete), microblog, :confirm => l(:microblog_delete_confirm), :method => :delete if microblog.user.id == User.current.id || User.current.admin? %>
     </p>
     <p>
-      <%= link_to l(:label_updated_time, time_tag(microblog.created_at)), microblog %>
+      <%= link_to format_time(microblog.created_at), microblog %>
       <% if microblog.project %>
         via <%= link_to microblog.project, {:action => :index_project, :project_id => microblog.project.identifier} %>
       <% end %>

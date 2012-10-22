@@ -7,7 +7,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def index_project
-    @microblogs = Microblog.find_all_by_project_id(@project.id)
+    @microblogs = Microblog.obvious_limit.find_all_by_project_id(@project.id)
     @microblog = Microblog.new
 
     respond_to do |format|
@@ -19,7 +19,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def index
-    @microblogs = Microblog.visible
+    @microblogs = Microblog.obvious_limit.visible.all
     @microblog = Microblog.new
     @projects = Project.all
 
@@ -32,7 +32,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_recent
-      @microblogs = Microblog.visible.more_recent(params[:id])
+      @microblogs = Microblog.visible.more_recent(params[:id]).all
     respond_to do |format|
       format.html { render 'more_recent', :layout => false}# index.html.erb
       format.json { render :json => @microblogs }
@@ -42,7 +42,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_history
-      @microblogs = Microblog.visible.more_history(params[:id])
+      @microblogs = Microblog.obvious_limit.visible.more_history(params[:id]).all
     respond_to do |format|
       format.html { render 'more_history', :layout => false}# index.html.erb
       format.json { render :json => @microblogs }
@@ -52,7 +52,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_recent_project
-      @microblogs = Microblog.visible(@project.id).more_recent(params[:id])
+      @microblogs = Microblog.visible(@project.id).more_recent(params[:id]).all
     respond_to do |format|
       format.html { render 'more_recent', :layout => false}# index.html.erb
       format.json { render :json => @microblogs }
@@ -62,7 +62,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_history_project
-      @microblogs = Microblog.visible(@project.id).more_history(params[:id])
+      @microblogs = Microblog.obvious_limit.visible(@project.id).more_history(params[:id]).all
     respond_to do |format|
       format.html { render 'more_history', :layout => false}# index.html.erb
       format.json { render :json => @microblogs }

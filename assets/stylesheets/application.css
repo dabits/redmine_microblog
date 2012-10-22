@@ -1,4 +1,4 @@
-.link_more {
+#link_more {
 	clear:both;
 	border: 1px solid gray;
 	background-color: silver;
@@ -6,8 +6,4 @@
 	width: 800px;
 	padding: 1em;
 	display: block;
-}
-
-#now_entries, #more_entries {
-	clear: both;
 }

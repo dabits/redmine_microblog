@@ -1,6 +1,12 @@
-<%if @microblogs.size() > 0 %>
+<%if @microblogs.size > 0 %>
+<script>
+  history_params = {id:<%= @microblogs.last.id %>}
+</script>
   <% @microblogs.each do |microblog| %>
   <%= render microblog %>
   <% end %>
-    <%= link_to_remote(l(:microblog_more), {:update => 'more_entries', :url => {:action => :more_history, :id => @microblogs.last.id}}, {:class => 'link_more'})%>
+<% else %>
+<script>
+  Microblog.no_more();
+</script>
 <% end %>

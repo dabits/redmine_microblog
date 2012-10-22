@@ -1,29 +1,19 @@
 <%= stylesheet_link_tag 'application', :plugin => 'redmine_microblog' %>
+<%= javascript_include_tag 'application', :plugin => 'redmine_microblog' %>
 <h1><%= l(:microblog)%></h1>
-
 <script>
-  var recent_id = <%= @microblogs.last.id %>
-  var update_url = '<%= url_for({:action => :more_recent})%>';
-  
-  updater = new Ajax.PeriodicalUpdater('now_entries', update_url, {
-  	method: 'get',
-  	parameters : 'id=' + recent_id,
-  	frequency: 60,
-  	onSuccess: function(request){
-      var hash = updater.options.parameters.parseQuery(); 
-      hash["ajax_request_id"] = Math.random(); 
-      hash = $H(hash); 
-      updater.options.parameters = hash.toQueryString(); 
-  	}
-  });
+  var interval = 60;
+  var recent_params = {id:<%= @microblogs.first.id %>}
+  var history_params = {id:<%= @microblogs.last.id %>}
+  function view_recent(){Microblog.frequency('entries', '<%= url_for({:action => :more_recent})%>', recent_params);}
+  function view_history(){Microblog.update('entries', '<%= url_for({:action => :more_history})%>', history_params);}
+  setInterval(view_recent, 1000 * interval);
 </script>
 
 <%= render 'form' %>
-<div id="now_entries">
+<div id="entries">
   <% @microblogs.each do |microblog| %>
   <%= render microblog %>
   <% end %>
 </div>
-<div id="more_entries">
-    <%= link_to_remote(l(:microblog_more), {:update => 'more_entries', :url => {:action => :more_history, :id => @microblogs.last.id}}, {:class => 'link_more'})%>
-</div>
+<a href="javascript:void(0);" onclick="view_history();" id="link_more"><%=l(:microblog_more)%></a>

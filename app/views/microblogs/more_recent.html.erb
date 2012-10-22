@@ -1,6 +1,6 @@
-<%if @microblogs.size() > 0 %>
+<%if @microblogs.size > 0 %>
 <script>
-  recent_id = <%= @microblogs.last.id %>
+  recent_params = {id:<%= @microblogs.first.id %>}
 </script>
 <% @microblogs.each do |microblog| %>
 <%= render microblog %>
