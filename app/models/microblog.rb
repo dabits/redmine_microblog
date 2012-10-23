@@ -4,13 +4,12 @@ class Microblog < ActiveRecord::Base
   belongs_to :user
   default_scope :order => 'created_at DESC'
   
-  named_scope :visible, lambda {|project_id|
-    unless project_id
-      @memberships = User.current.memberships.all(:conditions => Project.visible_condition(User.current))
-      project_ids = @memberships.map{|m| m.project.id} || []
+  named_scope :visible, lambda {|project|
+    if project.instance_of?(Array)
+      project_ids = project.map{|m| m.id} || []
       {:conditions => ['project_id IS NULL OR project_id IN (?)', project_ids.join(',')]}
-    else
-      {:conditions => {:project_id => project_id}}
+    elsif !project.blank?
+      {:conditions => {:project_id => project.id}}
     end
   }
   named_scope :more_recent, lambda {|id| {:conditions => ['id > ?', id]}}

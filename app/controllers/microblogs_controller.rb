@@ -19,9 +19,9 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def index
-    @microblogs = Microblog.obvious_limit.visible.all
+    @projects = Project.visible.find(:all, :order => 'lft')
+    @microblogs = Microblog.obvious_limit.visible(@projects).all
     @microblog = Microblog.new
-    @projects = Project.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -52,7 +52,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_recent_project
-      @microblogs = Microblog.visible(@project.id).more_recent(params[:id]).all
+      @microblogs = Microblog.visible(@project).more_recent(params[:id]).all
     respond_to do |format|
       format.html { render 'more_recent', :layout => false}# index.html.erb
       format.json { render :json => @microblogs }
@@ -62,7 +62,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_history_project
-      @microblogs = Microblog.obvious_limit.visible(@project.id).more_history(params[:id]).all
+      @microblogs = Microblog.obvious_limit.visible(@project).more_history(params[:id]).all
     respond_to do |format|
       format.html { render 'more_history', :layout => false}# index.html.erb
       format.json { render :json => @microblogs }
