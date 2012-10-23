@@ -10,7 +10,7 @@
     </p>
     <p>
       <%= link_to format_time(microblog.created_at), microblog %>
-      <% if microblog.project %>
+      <% if microblog.project && @project.blank? %>
         via <%= link_to microblog.project, {:action => :index_project, :project_id => microblog.project.identifier} %>
       <% end %>
     </p>
