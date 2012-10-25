@@ -3,8 +3,8 @@
 <h1><%= l(:microblog_project)%></h1>
 <script>
   var interval = 60;
-  var recent_params = {id:<%= @microblogs.first.id %>}
-  var history_params = {id:<%= @microblogs.last.id %>}
+  var recent_params = {id:<%= @microblogs.size > 0 ? @microblogs.first.id : 0 %>}
+  var history_params = {id:<%= @microblogs.size > 0 ? @microblogs.last.id : 0 %>}
   function view_recent(){Microblog.frequency('entries', '<%= url_for({:action => :more_recent_project})%>', recent_params);}
   function view_history(){Microblog.update('entries', '<%= url_for({:action => :more_history_project})%>', history_params);}
   setInterval(view_recent, 1000 * interval);
