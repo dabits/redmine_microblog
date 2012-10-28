@@ -7,7 +7,7 @@ class Microblog < ActiveRecord::Base
   named_scope :visible, lambda {|project|
     if project.instance_of?(Array)
       project_ids = project.map{|m| m.id} || []
-      {:conditions => ['project_id IS NULL OR project_id IN (?)', project_ids.join(',')]}
+      {:conditions => ['project_id IS NULL OR project_id IN (?)', project_ids]}
     elsif !project.blank?
       {:conditions => {:project_id => project.id}}
     end
