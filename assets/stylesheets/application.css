@@ -3,7 +3,67 @@
 	border: 1px solid gray;
 	background-color: silver;
 	text-align:center;
-	width: 800px;
+	width: 720px;
+	margin-top: 1em;
 	padding: 1em;
 	display: block;
 }
+
+.microblog {
+	width: 720px;
+	clear:both;
+	padding: 0.5em;
+	border-bottom: 1px solid #C0C0C0;
+}
+.microblog:first-child {
+	border-top: 1px solid #C0C0C0;
+}
+
+.microblog .icon-gravatar {
+	margin: 1em 1em 1em 0.5em;
+}
+
+.microblog .entry {
+	float:left;
+	width: 640px;
+}
+
+.microblog .entry .head h4 {
+	border: 0px;
+	display: inline;
+	padding-right: 0px;
+}
+.microblog .entry .head .info {
+	float: right;
+	text-align:right;
+}
+.microblog .entry .head h4 a {
+	color: #444;
+}
+.microblog .entry .head .info a,
+.microblog .entry .more a {
+	color: #808080;
+}
+
+.microblog .entry .head h4 a:hover,
+.microblog .entry .head .info a:hover,
+.microblog .entry .more a:hover {
+	color: #2A5685;
+}
+
+.microblog:hover {
+	background-color: #F0F0F0;
+}
+
+.microblog:after {
+    content: " ";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0.1px;
+    font-size: 0.1em;
+    line-height: 0;
+}
+* html .microblog { display: inline-block; }
+* html .microblog { height: 1%; }
+.microblog { display: block; }
