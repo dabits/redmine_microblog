@@ -37,6 +37,9 @@
 	float: right;
 	text-align:right;
 }
+.microblog .entry .body {
+	margin-top: 3em;
+}
 .microblog .entry .head h4 a {
 	color: #444;
 }
