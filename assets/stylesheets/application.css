@@ -37,6 +37,9 @@
 	float: right;
 	text-align:right;
 }
+.microblog .entry .head .login {
+	color: #808080;
+}
 .microblog .entry .body {
 	margin-top: 3em;
 }
