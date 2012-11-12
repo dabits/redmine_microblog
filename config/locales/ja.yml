@@ -7,3 +7,5 @@ ja:
   microblog_created: "投稿しました！"
   microblog_delete: "削除"
   microblog_delete_confirm: "本当に削除しますか?"
+  microblog_choose_project: "話題に関連するプロジェクトを選択..."
+  microblog_release_project: ""

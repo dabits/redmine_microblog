@@ -21,6 +21,7 @@ class MicroblogsController < ApplicationController
     @projects = Project.visible(User.current, {:member => true}).find(:all, :order => 'lft')
     @microblogs = Microblog.obvious_limit.visible(@projects).all
     @microblog = Microblog.new
+    @microblog.project_id = session[:microblog_choose] unless session[:microblog_choose].blank?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -87,6 +88,7 @@ class MicroblogsController < ApplicationController
     @microblog.user_id = User.current.id
     respond_to do |format|
       if @microblog.save
+        session[:microblog_choose] =@microblog.project_id
         format.html { redirect_to :back, :notice =>  l(:microblog_created) }
         format.json { render :json =>  @microblog, :status => :created, :location => @microblog }
       else

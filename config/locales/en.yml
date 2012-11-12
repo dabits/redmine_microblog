@@ -7,3 +7,5 @@ en:
   microblog_created: "Microblog was successfully created."
   microblog_delete: "Delete"
   microblog_delete_confirm: "Are you want to delete ?"
+  microblog_choose_project: "choose project."
+  microblog_release_project: ""
