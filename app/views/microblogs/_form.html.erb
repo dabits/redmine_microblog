@@ -1,5 +1,5 @@
 <div style="width: 800px;">
-<% form_for(@microblog) do |f| %>
+<%= form_for(@microblog) do |f| %>
   <% if @microblog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@microblog.errors.count, "error") %> prohibited this microblog from being saved:</h2>

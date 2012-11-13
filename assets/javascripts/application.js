@@ -1,26 +1,18 @@
 Microblog = {
 	
 	frequency: function(id, url, params){
-		frequency = new Ajax.Updater(id, url, {
-			asynchronous:true,
-			evalScripts:true,
-			insertion: Insertion.Top,
-			method: 'get',
-			parameters : params,
+		frequency = $.get(url, params, function(data){
+			$('#'+id).prepend(data);
 		});
 	},
 	
 	update: function(id, url, params){
-		updater = new Ajax.Updater(id, url, {
-			asynchronous:true,
-			evalScripts:true,
-			insertion: Insertion.Bottom,
-			method: 'get',
-			parameters : params
+		frequency = $.get(url, params, function(data){
+			$('#'+id).append(data);
 		});
 	},
 
 	no_more: function(){
-		Element.remove($('link_more'));
+		$('#link_more').remove();
 	}
 }
