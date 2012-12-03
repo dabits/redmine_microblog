@@ -13,7 +13,7 @@
           via <%= link_to microblog.project, {:action => :index_project, :project_id => microblog.project.identifier} %>
         <% end %>
           <br />
-          <%= link_to l(:microblog_delete), microblog, :confirm => l(:microblog_delete_confirm), :method => :delete if microblog.user.id == User.current.id || User.current.admin? %>
+          <%= link_to l(:microblog_delete), microblog, :confirm => l(:microblog_delete_confirm), :method => :delete if (microblog.user.id == User.current.id && User.current.allowed_to?({:controller => :microblogs, :action => :destroy}, @project || @projects, :global => true)) || User.current.admin? %>
       </span>
   	</div>
     <p class="body"><%= textilizable(microblog, :body) %></p>

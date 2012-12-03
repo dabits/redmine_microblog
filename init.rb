@@ -10,6 +10,7 @@ Redmine::Plugin.register :redmine_microblog do
 
   permission :microblog_view, :microblogs => :index
   permission :microblog_create, :microblogs => :create
+  permission :microblog_destroy, :microblogs => :destroy
   project_module :redmine_microblog do
     permission :microblog_project_view, :microblogs => [:index_project, :more_recent_project, :more_history_project]
   end
