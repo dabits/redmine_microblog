@@ -18,7 +18,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def index
-    @projects = Project.visible(User.current, {:member => true}).find(:all, :order => 'lft')
+    @projects = Project.has_module('redmine_microblog').visible(User.current, {:member => true}).find(:all, :order => 'lft')
     @microblogs = Microblog.obvious_limit.visible(@projects).all
     @microblog = Microblog.new
     @microblog.project_id = session[:microblog_choose] unless session[:microblog_choose].blank?
@@ -43,7 +43,7 @@ class MicroblogsController < ApplicationController
   # GET /microblogs
   # GET /microblogs.json
   def more_history
-    @projects = Project.visible(User.current, {:member => true}).find(:all, :order => 'lft')
+    @projects = Project.has_module('redmine_microblog').visible(User.current, {:member => true}).find(:all, :order => 'lft')
     @microblogs = Microblog.obvious_limit.visible(@projects).more_history(params[:id]).all
     respond_to do |format|
       format.html { render 'more_history', :layout => false}# index.html.erb
