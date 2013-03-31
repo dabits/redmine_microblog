@@ -1,18 +1,86 @@
-#link_more {
-	clear:both;
-	border: 1px solid gray;
-	background-color: silver;
-	text-align:center;
-	width: 720px;
-	margin-top: 1em;
-	padding: 1em;
+/************************************
+  *		Main: Content&Form
+  ***********************************/
+
+#content {
+	max-width: 960px;
+	padding: 8px 32px;
+}
+
+#microblog_form textarea{
+	width: 100%;
+	height: 100px;
+}
+
+/************************************
+  *		Sidebar : Project list
+  ***********************************/
+
+#microblog_projects {
+	float:left;
+}
+
+#microblog_projects,
+.microblog_project,
+.microblog_project a {
+	width: 300px;
+}
+
+.microblog_project a {
 	display: block;
 }
 
+.microblog_project {
+	position: relative;
+	border: 1px solid #C0C0C0;
+}
+
+.microblog_project:hover {
+	background-color: #F0F0F0;
+}
+
+.microblog_project.selected {
+	border: 2px solid #C0C0C0;
+	background-color: #F0F0F0;
+	font-weight: bold;
+}
+
+.microblog_project.selected:after, .microblog_project.selected:before {
+	left: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+}
+
+.microblog_project.selected:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #F0F0F0;
+	border-width: 11px;
+	top: 50%;
+	margin-top: -11px;
+}
+.microblog_project.selected:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #C0C0C0;
+	border-width: 14px;
+	top: 50%;
+	margin-top: -14px;
+}
+
+/************************************
+  *		Content : Microblog list
+  ***********************************/
+
+#microblog_entries {
+	width: 600px;
+	float:right;
+}
+
 .microblog {
-	width: 720px;
+	padding: 0.5em 0;
 	clear:both;
-	padding: 0.5em;
 	border-bottom: 1px solid #C0C0C0;
 }
 .microblog:first-child {
@@ -24,8 +92,8 @@
 }
 
 .microblog .entry {
-	float:left;
-	width: 640px;
+	float: right;
+	width: 520px;
 }
 
 .microblog .entry .head h4 {
@@ -61,6 +129,33 @@
 	background-color: #F0F0F0;
 }
 
+/************************************
+  *		Content : More Button
+  ***********************************/
+
+#microblog_more {
+	width: 600px;
+	float:right;
+}
+
+#link_more {
+	clear:both;
+	border: 1px solid #C0C0C0;
+	text-align:center;
+	margin-top: 1em;
+	padding: 1em 0;
+	display: block;
+}
+
+#link_more:hover {
+	background-color: #F0F0F0;
+}
+
+/************************************
+  *		Common	
+  ***********************************/
+
+#microblog_content:after,
 .microblog:after {
     content: " ";
     display: block;
@@ -70,6 +165,6 @@
     font-size: 0.1em;
     line-height: 0;
 }
-* html .microblog { display: inline-block; }
-* html .microblog { height: 1%; }
-.microblog { display: block; }
+* html #microblog_content, * html .microblog { display: inline-block; }
+* html #microblog_content, * html .microblog { height: 1%; }
+#microblog_content, .microblog { display: block; }

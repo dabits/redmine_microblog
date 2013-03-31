@@ -1,19 +1,30 @@
-<%= stylesheet_link_tag 'application', :plugin => 'redmine_microblog' %>
-<%= javascript_include_tag 'application', :plugin => 'redmine_microblog' %>
+<%= stylesheet_link_tag 'application.css?20130311', :plugin => 'redmine_microblog' %>
+<%= javascript_include_tag 'application.js?20130331', :plugin => 'redmine_microblog' %>
 <h1><%= l(:microblog)%></h1>
 <script>
   var interval = 60;
   var recent_params = {id:<%= @microblogs.size > 0 ? @microblogs.first.id : 0 %>}
   var history_params = {id:<%= @microblogs.size > 0 ? @microblogs.last.id : 0 %>}
-  function view_recent(){Microblog.frequency('entries', '<%= url_for({:action => :more_recent})%>', recent_params);}
-  function view_history(){Microblog.update('entries', '<%= url_for({:action => :more_history})%>', history_params);}
+  function view_recent(){Microblog.frequency('microblog_entries', '<%= url_for({:action => :more_recent})%>', recent_params);}
+  function view_history(){Microblog.update('microblog_entries', '<%= url_for({:action => :more_history})%>', history_params);}
   setInterval(view_recent, 1000 * interval);
 </script>
 
 <%= render 'form' %>
-<div id="entries">
-  <% @microblogs.each do |microblog| %>
-  <%= render microblog %>
-  <% end %>
+
+<div id="microblog_content">
+
+  <div id="microblog_projects">
+    <%= render :partial => 'sidebar' %>
+  </div>
+
+  <div id="microblog_entries">
+    <% @microblogs.each do |microblog| %>
+      <%= render microblog %>
+    <% end %>
+  </div>
+  <div id="microblog_more">
+    <a href="javascript:void(0);" onclick="view_history();" id="link_more"><%=l(:microblog_more)%></a>
+  </div>
+
 </div>
-<a href="javascript:void(0);" onclick="view_history();" id="link_more"><%=l(:microblog_more)%></a>

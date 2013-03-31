@@ -1,0 +1,22 @@
+<table>
+	<% if params[:project_id].blank? %>
+	<tr><td class="microblog_project selected">
+		<%=l(:microblog_common)%>
+	</td></tr>
+	<% else %>
+	<tr><td class="microblog_project">
+		<%= link_to l(:microblog_common), {:action => :index}%>
+	</td></tr>
+	<% end %>
+<% @projects.each do |project| %>
+	<% if params[:project_id] == project.identifier %>
+	<tr><td class="microblog_project selected">
+		<%= project.name %>
+	</td></tr>
+	<% else %>
+	<tr><td class="microblog_project">
+		<%= link_to project.name, {:action => :index_project, :project_id => project.identifier} %>
+	</td></tr>
+	<% end %>
+<% end %>
+</table>

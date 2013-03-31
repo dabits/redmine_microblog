@@ -10,6 +10,8 @@ class Microblog < ActiveRecord::Base
       {:conditions => ['project_id IS NULL OR project_id IN (?)', project_ids]}
     elsif !project.blank?
       {:conditions => {:project_id => project.id}}
+    else
+      {:conditions => ['project_id IS NULL']}
     end
   }
   named_scope :more_recent, lambda {|id| {:conditions => ['id > ?', id]}}
