@@ -7,4 +7,6 @@ RedmineApp::Application.routes.draw do
     get :index_project, :on => :collection
   end
   match "/projects/:project_id/microblogs/" => "microblogs#index_project"
+  match "/projects/:project_id/microblogs/more_recent_project" => "microblogs#more_recent_project"
+  match "/projects/:project_id/microblogs/more_history_project" => "microblogs#more_history_project"
 end
