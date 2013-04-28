@@ -3,8 +3,8 @@ require 'redmine'
 Redmine::Plugin.register :redmine_microblog do
   name 'Redmine Microblog plugin'
   author 'dabits'
-  description 'This is a plugin for Redmine'
-  version '0.0.1'
+  description 'Microblog plugin'
+  version '1.0.0'
   url 'http://github.com/dabits/redmine_microblog'
   author_url 'http://www.dabits.net/'
 
